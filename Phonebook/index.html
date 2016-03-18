@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Phonebook</title>
+	<link rel="stylesheet" href="styles.css">
+	<script src="libs/jquery-2.2.1.js"></script>
+	<script src="libs/q.js"></script>
+	<script src="libs/mustache.js"></script>
+	<script src="libs/sammy-latest.min.js"></script>
+	<script src="libs/jquery.noty.packaged.js"></script>
+</head>
+
+<body>
+	<ul id="menu">
+		<li><a href="#/home" class="link">Home</a></li>
+		<li><a href="#/phones" class="link">Phonebook</a></li>
+		<li><a href="#/phones/add" class="link">Add Phone</a></li>
+		<li><a href="#" class="link">Edit Profile</a></li>
+		<li><a href="#/logout" class="link">Logout</a></li>
+	</ul>
+	<div id="notify"></div>
+	<main id="wrapper">
+
+	</main>
+
+	<!--<footer id="footer">&copy; 2014 by Software University Foundation, No Rights Reserved</footer>-->
+
+	<script src="helpers/requester.js"></script>
+	<script src="helpers/notifier.js"></script>
+	<!--models-->
+	<script src="models/userModel.js"></script>
+	<script src="models/phoneModel.js"></script>
+
+	<!--views-->
+	<script src="views/homeViews.js"></script>
+	<script src="views/userViews.js"></script>
+	<script src="views/phoneViews.js"></script>
+
+	<!--controllers-->
+	<script src="controllers/homeController.js"></script>
+	<script src="controllers/userController.js"></script>
+	<script src="controllers/phoneController.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>
