@@ -22,6 +22,11 @@ app.userModel = (function() {
         return this.requester.post(requestUrl, null, true);
     };
 
+    UserModel.prototype.edit = function(data) {
+        var requestUrl = this.serviceUrl + data.id;
+        return this.requester.put(requestUrl, data, true);
+    };
+
     return {
         load: function(requester) {
             return new UserModel(requester);

@@ -72,6 +72,10 @@ var app = app || {};
                 }).done();
         });
 
+        this.get('#/user/edit', function() {
+            userController.loadEditProfileForm(selector);
+        });
+
         this.get('#/home', function () {
             var data = {
                 fullName: sessionStorage['fullName'],
@@ -85,7 +89,8 @@ var app = app || {};
         });
 
         this.get('#/phones', function() {
-            phoneController.getAllPhones(sessionStorage['userId'])
+            var userId = sessionStorage['userId'];
+            phoneController.getAllPhones(userId)
                 .then(function(success) {
                     phoneController.loadPhoneBook(selector,success);
                 }).done();
@@ -101,6 +106,10 @@ var app = app || {};
 
         this.bind('login', function(e, data) {
             userController.login(data);
+        });
+
+        this.bind('editProfile', function(e, data) {
+           userController.edit(data);
         });
 
         this.bind('addPhone', function(e, data) {

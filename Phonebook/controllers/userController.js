@@ -16,6 +16,10 @@ app.userController = (function() {
         return this._viewBag.showLoginForm(selector);
     };
 
+    UserController.prototype.loadEditProfileForm = function(selector) {
+        return this._viewBag.showEditForm(selector);
+    };
+
     UserController.prototype.register = function(data) {
         var userCredentialsModel = {
             username: data.username,
@@ -62,6 +66,16 @@ app.userController = (function() {
             .then(function() {
                 sessionStorage.clear();
             })
+    };
+
+    UserController.prototype.edit = function(data) {
+        this._model.edit(data)
+            .then(function(success) {
+                setSessionData(success);
+                app.notifier.success('Your profile has been successfully edited!');
+            },function(error) {
+                console.log(error);
+            });
     };
 
     function setSessionData(data) {
