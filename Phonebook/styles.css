@@ -124,6 +124,12 @@ body {
     border: 1px solid #3a6c35;
 }
 
+.edit-phone-input {
+    width: 150px;
+    height: 23px;
+    padding: 0 7px 0 7px;
+}
+
 #phones {
     margin: 10px auto;
 }
@@ -134,6 +140,7 @@ table {
 }
 
 th, td {
+    height: 29px;
     padding: 9px;
     text-align: left;
     border-bottom: 1px solid #ddd;

@@ -115,6 +115,10 @@ var app = app || {};
         this.bind('addPhone', function(e, data) {
             phoneController.addPhone(data);
         });
+
+        this.bind('editPhone', function(e, data) {
+            phoneController.editPhone(data);
+        })
     });
 
     app.router.run('#/');

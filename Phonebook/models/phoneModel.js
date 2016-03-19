@@ -15,6 +15,11 @@ app.phoneModel = (function() {
         var requestUrl = this.serviceUrl + '/?query={"_acl.creator":"'+ userId +'"}';
         return this.requester.get(requestUrl, true);
     };
+
+    PhoneModel.prototype.editPhone = function(phoneData) {
+        var requestUrl = this.serviceUrl + '/' + phoneData.id;
+        return this.requester.put(requestUrl, phoneData, true);
+    };
     
     return {
         load: function(requester) {

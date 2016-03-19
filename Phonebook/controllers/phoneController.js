@@ -31,6 +31,19 @@ app.phoneController = (function() {
         return this._model.getAllPhones(userId);
     };
 
+    PhoneController.prototype.editPhone = function(phoneData) {
+        return this._model.editPhone(phoneData)
+            .then(function() {
+                Sammy(function () {
+                    this.trigger('redirectUrl', { url: '#/phones' });
+                });
+
+                app.notifier.success('Success!');
+            }, function() {
+                app.notifier.error('Something went wrong!');
+            }).done();
+    };
+
     return {
         load: function(model, viewBag) {
             return new PhoneController(model, viewBag);

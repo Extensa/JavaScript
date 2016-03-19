@@ -3,19 +3,17 @@ var app = app || {};
 app.userViews = (function() {
     'use strict';
     function showRegisterForm(selector) {
-        $.get('templates/registration.html', function(template) {
+        $.get('templates/user/registration.html', function(template) {
             $(selector).html(template);
             $('#reg-btn').click(function() {
-                var username = $('#username').val(),
-                    password = $('#password').val(),
-                    fullName = $('#fullName').val();
+                var userData = {
+                    username: $('#username').val(),
+                    password: $('#password').val(),
+                    fullName: $('#fullName').val()
+                };
 
                 $.sammy(function() {
-                    this.trigger('register', {
-                        username: username,
-                        password: password,
-                        fullName: fullName
-                    });
+                    this.trigger('register', userData);
                 });
 
                 return false;
@@ -24,14 +22,16 @@ app.userViews = (function() {
     }
 
     function showLoginForm(selector) {
-        $.get('templates/login.html', function(template) {
+        $.get('templates/user/login.html', function(template) {
             $(selector).html(template);
             $('#login-btn').click(function() {
-                var username = $('#username').val(),
-                    password = $('#password').val();
+                var userData = {
+                    username: $('#username').val(),
+                    password: $('#password').val()
+                };
 
                 Sammy(function() {
-                    this.trigger('login', { username: username, password: password });
+                    this.trigger('login', userData);
                 });
 
                 return false;
@@ -40,7 +40,7 @@ app.userViews = (function() {
     }
     
     function showEditForm(selector) {
-        $.get('templates/editProfileScreen.html', function(template) {
+        $.get('templates/user/editProfileScreen.html', function(template) {
             var currentUserData = { username: sessionStorage['username'], fullName: sessionStorage['fullName'] };
 
             var resultHtml = Mustache.render(template, currentUserData);
