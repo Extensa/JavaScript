@@ -90,10 +90,7 @@ var app = app || {};
 
         this.get('#/phones', function() {
             var userId = sessionStorage['userId'];
-            phoneController.getAllPhones(userId)
-                .then(function(success) {
-                    phoneController.loadPhoneBook(selector,success);
-                }).done();
+            phoneController.loadPhoneBook(selector, userId);
         });
 
         this.bind('redirectUrl', function (e, data) {

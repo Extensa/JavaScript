@@ -11,8 +11,12 @@ app.phoneController = (function() {
         return this._viewBag.showAddPhone(selector);
     };
 
-    PhoneController.prototype.loadPhoneBook = function(selector, data) {
-        return this._viewBag.showAllPhones(selector, data);
+    PhoneController.prototype.loadPhoneBook = function(selector, userId) {
+        var _this = this;
+        this._model.getAllPhones(userId)
+            .then(function(success) {
+                return _this._viewBag.showAllPhones(selector, success);
+            }).done();
     };
 
     PhoneController.prototype.addPhone = function(phoneData) {
@@ -39,8 +43,8 @@ app.phoneController = (function() {
                 });
 
                 app.notifier.success('Success!');
-            }, function() {
-                app.notifier.error('Something went wrong!');
+            }, function(error) {
+                app.notifier.error(error.responseJSON.description);
             }).done();
     };
 

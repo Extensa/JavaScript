@@ -30,27 +30,29 @@ app.phoneViews = (function() {
         $.get('templates/phone/phonebookScreen.html', function(template) {
             var resultHTML = Mustache.render(template, { phones: data });
             $(selector).html(resultHTML);
+
             $('.edit-btn').click(function() {
-                var btn = $(this);
-                _this.showEditPhone(btn);
+                var row = $($(this).parents('tr')[0]),
+                    phoneId = $(this).parent().attr('id');
+
+                _this.showEditPhone(row, phoneId);
             });
         })
     }
 
-    function showEditPhone(editButton) {
-        var id = editButton.parent().attr('id'),
-            tr = $(editButton.parent().parent()[0]),
-            currentData = {
-                name: tr.children()[0].innerHTML,
-                phoneNumber: tr.children()[1].innerHTML
-            };
+    function showEditPhone(row, phoneId) {
+        var currentData = {
+            name: row.children().eq(0).text(),
+            phoneNumber: row.children().eq(1).text()
+        };
 
         $.get('templates/phone/editPhoneScreen.html', function(template) {
             var resultHtml = Mustache.render(template, currentData);
-            tr.html(resultHtml);
+            row.html(resultHtml);
+
             $('.phone-edit-btn').click(function() {
                 var editedPhoneData = {
-                    id: id,
+                    id: phoneId,
                     name: $('#edited-name').val(),
                     phoneNumber: $('#edited-phone').val()
                 };
@@ -58,7 +60,7 @@ app.phoneViews = (function() {
                 Sammy(function() {
                     this.trigger('editPhone', editedPhoneData);
                 })
-            });
+            })
         })
     }
 

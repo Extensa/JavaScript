@@ -3,7 +3,6 @@ var app = app || {};
 app.userController = (function() {
     'use strict';
     function UserController(model, viewBag) {
-        var _this = this;
         this._model = model;
         this._viewBag = viewBag;
     }
@@ -35,7 +34,7 @@ app.userController = (function() {
                     this.trigger('redirectUrl', { url: '#/home' });
                 })
             }, function(error) {
-                console.log(error);
+                app.notifier.error(error.responseJSON.description);
             });
     };
 
@@ -54,8 +53,8 @@ app.userController = (function() {
                 });
 
                 app.notifier.success('Successfully logged in!');
-            }, function() {
-                app.notifier.error('Wrong username or password!');
+            }, function(error) {
+                app.notifier.error(error.responseJSON.description);
             }).done();
 
 
@@ -74,7 +73,7 @@ app.userController = (function() {
                 setSessionData(success);
                 app.notifier.success('Your profile has been successfully edited!');
             },function(error) {
-                console.log(error);
+                app.notifier.error(error.responseJSON.description);
             });
     };
 
