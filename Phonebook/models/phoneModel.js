@@ -20,6 +20,11 @@ app.phoneModel = (function() {
         var requestUrl = this.serviceUrl + '/' + phoneData.id;
         return this.requester.put(requestUrl, phoneData, true);
     };
+
+    PhoneModel.prototype.deletePhone = function(phoneId) {
+        var requestUrl = this.serviceUrl + '/' + phoneId;
+        return this.requester.delete(requestUrl, true);
+    };
     
     return {
         load: function(requester) {

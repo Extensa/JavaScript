@@ -115,7 +115,11 @@ var app = app || {};
 
         this.bind('editPhone', function(e, data) {
             phoneController.editPhone(data);
-        })
+        });
+
+        this.bind('deletePhone', function(e, id) {
+            phoneController.deletePhone(id);
+        });
     });
 
     app.router.run('#/');

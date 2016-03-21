@@ -37,6 +37,13 @@ app.phoneViews = (function() {
 
                 _this.showEditPhone(row, phoneId);
             });
+
+            $('.delete-btn').click(function() {
+                var parent = $(this).parent(),
+                    phoneId = $(this).parent().attr('id');
+
+                _this.showDeletePhone(parent, phoneId);
+            });
         })
     }
 
@@ -64,12 +71,26 @@ app.phoneViews = (function() {
         })
     }
 
+    function showDeletePhone(parentElement, phoneId) {
+        parentElement.html($('<a>Confirm</a>').attr({
+            class: 'buttonSmall confirm-del-btn',
+            href: '#'
+        }));
+
+        $('.confirm-del-btn').click(function() {
+            Sammy(function() {
+                this.trigger('deletePhone', phoneId);
+            });
+        });
+    }
+
     return {
         load: function() {
             return {
                 showAddPhone: showAddPhone,
                 showAllPhones: showAllPhones,
-                showEditPhone: showEditPhone
+                showEditPhone: showEditPhone,
+                showDeletePhone: showDeletePhone
             }
         }
     }

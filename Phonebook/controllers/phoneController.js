@@ -42,7 +42,20 @@ app.phoneController = (function() {
                     this.trigger('redirectUrl', { url: '#/phones' });
                 });
 
-                app.notifier.success('Success!');
+                app.notifier.success('edited successfully!');
+            }, function(error) {
+                app.notifier.error(error.responseJSON.description);
+            }).done();
+    };
+
+    PhoneController.prototype.deletePhone = function(phoneId) {
+        return this._model.deletePhone(phoneId)
+            .then(function() {
+                Sammy(function () {
+                    this.trigger('redirectUrl', { url: '#/phones' });
+                });
+
+                app.notifier.success('deleted successfully!');
             }, function(error) {
                 app.notifier.error(error.responseJSON.description);
             }).done();
