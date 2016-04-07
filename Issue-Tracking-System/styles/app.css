@@ -1,12 +1,14 @@
 body {
     padding-top: 60px;
-}
+    background-color: #d9ffb3;
+ }
 
 .border {
     padding: 20px;
     border: 1px solid #bfbfbf;
     border-radius: 8px;
     box-shadow: 1px 1px 5px #a6a6a6;
+    background-color: white;
 }
 
 .glyphicon-home, .glyphicon-user {
