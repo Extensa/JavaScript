@@ -1,0 +1,14 @@
+body {
+    padding-top: 60px;
+}
+
+.border {
+    padding: 20px;
+    border: 1px solid #bfbfbf;
+    border-radius: 8px;
+    box-shadow: 1px 1px 5px #a6a6a6;
+}
+
+.glyphicon-home, .glyphicon-user {
+    font-size: 1.5em;
+}
