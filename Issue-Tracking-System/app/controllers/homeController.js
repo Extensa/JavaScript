@@ -1,14 +1,17 @@
-angular.module('issueTrackingSystem.home', [])
+angular.module('issueTrackingSystem.home', ['issueTrackingSystem.users.authentication'])
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/login', {
-            templateUrl: 'app/views/home/login.html',
-            controller: 'HomeController'
-        });
-
-        $routeProvider.when('/register', {
-            templateUrl: 'app/views/home/register.html',
+        $routeProvider.when('/', {
+            templateUrl: 'app/views/home/login_and_register.html',
             controller: 'HomeController'
         });
     }])
 
-    .controller('HomeController', []);
+    .controller('HomeController', ['$scope', '$location', 'authentication',
+        function ($scope, $location, authentication) {
+        $scope.register = function (userData) {
+            authentication.register(userData)
+                .then(function (response) {
+                    console.log(response);
+                })
+        }
+    }]);
