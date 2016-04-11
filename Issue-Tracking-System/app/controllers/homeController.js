@@ -7,9 +7,16 @@ angular.module('issueTrackingSystem.home', ['issueTrackingSystem.users.authentic
     }])
 
     .controller('HomeController', ['$scope', '$location', 'authentication',
-        function ($scope, $location, authentication) {
+        function HomeController($scope, $location, authentication) {
         $scope.register = function (userData) {
             authentication.register(userData)
+                .then(function (response) {
+                    console.log(response);
+                })
+        };
+
+        $scope.login = function (userData) {
+            authentication.login(userData)
                 .then(function (response) {
                     console.log(response);
                 })
