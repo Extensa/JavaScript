@@ -2,6 +2,7 @@
 
 angular.module('issueTrackingSystem', [
         'ngRoute',
+        'ngCookies',
         'issueTrackingSystem.home'
     ])
     .config(['$routeProvider', function($routeProvider) {

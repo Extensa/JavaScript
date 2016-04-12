@@ -10,15 +10,15 @@ angular.module('issueTrackingSystem.home', ['issueTrackingSystem.users.authentic
         function HomeController($scope, $location, authentication) {
         $scope.register = function (userData) {
             authentication.register(userData)
-                .then(function (response) {
+                .success(function (response) {
                     console.log(response);
-                })
+                });
         };
 
         $scope.login = function (userData) {
             authentication.login(userData)
                 .then(function (response) {
                     console.log(response);
-                })
+                });
         }
     }]);

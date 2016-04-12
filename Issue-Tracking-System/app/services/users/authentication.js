@@ -1,6 +1,6 @@
 angular.module('issueTrackingSystem.users.authentication', [])
-    .factory('authentication', ['$http', '$q', 'BASE_URL',
-        function ($http, $q, BASE_URL) {
+    .factory('authentication', ['$http', '$q', '$cookies', 'BASE_URL',
+        function ($http, $q, $cookies, BASE_URL) {
 
             function register(userData) {
                 var deffered = $q.defer();
@@ -14,8 +14,6 @@ angular.module('issueTrackingSystem.users.authentication', [])
             }
 
             function login(userData) {
-                userData.grant_type = 'password';
-
                 var deffered = $q.defer();
 
                 $http({
@@ -24,8 +22,10 @@ angular.module('issueTrackingSystem.users.authentication', [])
                     data: "userName=" + userData.username + "&password=" + userData.password +
                     "&grant_type=password"
                 }).then(function (response) {
-                        deffered.resolve(response.data);
-                    });
+                    deffered.resolve(response.data);
+
+                    $cookies.putObject('identity', response.data, { expires: response.data['.expires'] });
+                });
 
                 return deffered.promise;
             }
