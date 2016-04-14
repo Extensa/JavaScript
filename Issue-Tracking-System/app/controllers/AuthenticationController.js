@@ -1,16 +1,25 @@
-angular.module('issueTrackingSystem.authenticationCtrl', ['issueTrackingSystem.users.authentication'])
+angular.module('issueTrackingSystem.authenticationCtrl', 
+    ['issueTrackingSystem.users.authentication'])
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/', {
-            templateUrl: 'app/views/home/login_and_register.html',
+        $routeProvider.when('/login', {
+            templateUrl: 'app/views/home/login.html',
+            controller: 'AuthenticationController'
+        });
+        $routeProvider.when('/register', {
+            templateUrl: 'app/views/home/register.html',
             controller: 'AuthenticationController'
         });
     }])
-    .controller('AuthenticationController', ['$scope', 'authentication',
-        function AuthenticationController($scope, authentication) {
+    .controller('AuthenticationController', ['$scope', '$location','authentication', 'notify',
+        function AuthenticationController($scope, $location, authentication, notify) {
             $scope.login = function (userData) {
                 authentication.login(userData)
                     .then(function (success) {
                         authentication.setUserCredentials(success);
+                        $location.path('/');
+                        notify.success('Welcome aboard!!');
+                    }, function (error) {
+                        notify.error(error.error_description);
                     });
             };
 
@@ -18,6 +27,9 @@ angular.module('issueTrackingSystem.authenticationCtrl', ['issueTrackingSystem.u
                 authentication.logout()
                     .then(function () {
                         authentication.clearUserCredentials();
+                        notify.success('You logged out successfully!');
+                    }, function (error) {
+                        notify.error(error.error_description);
                     })
             };
             
@@ -26,7 +38,6 @@ angular.module('issueTrackingSystem.authenticationCtrl', ['issueTrackingSystem.u
                     .then(function (success) {
                         
                     })
-                
             };
 
             $scope.isLoggedIn = authentication.isLogged;

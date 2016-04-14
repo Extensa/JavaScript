@@ -1,7 +1,7 @@
 body {
     padding-top: 60px;
     background-color: #d9ffb3;
- }
+}
 
 .border {
     padding: 20px;
@@ -9,7 +9,11 @@ body {
     border-radius: 8px;
     box-shadow: 1px 1px 5px #a6a6a6;
     background-color: white;
-    margin-bottom: 20px;
+}
+
+.center{
+    margin: 0 auto;
+    float: none;
 }
 
 .glyphicon-home, .glyphicon-user {

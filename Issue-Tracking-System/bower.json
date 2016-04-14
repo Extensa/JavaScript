@@ -16,6 +16,7 @@
     "angular-loader": "^1.5.3",
     "bootstrap": "^3.3.6",
     "jquery": "^2.2.2",
-    "angular-cookies": "^1.5.3"
+    "angular-cookies": "^1.5.3",
+    "noty": "^2.3.8"
   }
 }

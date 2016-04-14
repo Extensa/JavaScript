@@ -41,6 +41,8 @@ angular.module('issueTrackingSystem.users.authentication', [])
                     "&grant_type=password"
                 }).then(function (response) {
                     deffered.resolve(response.data);
+                }, function (error) {
+                    deffered.reject(error.data);
                 });
 
                 return deffered.promise;
@@ -55,6 +57,8 @@ angular.module('issueTrackingSystem.users.authentication', [])
                     headers: this.getAuthHeader()
                 }).then(function (response) {
                     deffered.resolve(response.data);
+                }, function (error) {
+                    deffered.reject(error.data);
                 });
 
                 return deffered.promise;

@@ -13,22 +13,26 @@
 <header>
     <div ng-include="'app/views/navbar.html'"></div>
 </header>
-<div class="container">
+<main class="container">
     <div ng-view></div>
-</div>
+</main>
 
 
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/angular-cookies/angular-cookies.js"></script>
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/noty/js/noty/packaged/jquery.noty.packaged.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
+<script src="app/app.js"></script>
+
 <script src="app/services/users/authentication.js"></script>
+<script src="app/services/notify.js"></script>
 
 <script src="app/controllers/AuthenticationController.js"></script>
-<script src="app/controllers/DashboardController.js"></script>
+<script src="app/controllers/IssuesController.js"></script>
 
-<script src="app/app.js"></script>
+
 </body>
 </html>
