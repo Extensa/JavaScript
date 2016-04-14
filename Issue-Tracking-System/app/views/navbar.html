@@ -11,7 +11,9 @@
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul ng-if="isLoggedIn()" class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#/logout" ng-click="logout()">Logout</a>
+                    <a href="#/logout" ng-click="logout()">
+                        <span class="glyphicon glyphicon-off"></span> Logout
+                    </a>
                 </li>
             </ul>
             <ul ng-if="!isLoggedIn()" class="nav navbar-nav navbar-right">

@@ -13,6 +13,7 @@ angular.module('issueTrackingSystem.authenticationCtrl',
     .controller('AuthenticationController', ['$scope', '$location','authentication', 'notify',
         function AuthenticationController($scope, $location, authentication, notify) {
             $scope.login = function (userData) {
+                console.log(userData);
                 authentication.login(userData)
                     .then(function (success) {
                         authentication.setUserCredentials(success);
@@ -30,14 +31,19 @@ angular.module('issueTrackingSystem.authenticationCtrl',
                         notify.success('You logged out successfully!');
                     }, function (error) {
                         notify.error(error.error_description);
-                    })
+                    });
             };
             
             $scope.register = function (userData) {
                 authentication.register(userData)
-                    .then(function (success) {
-                        
-                    })
+                    .then(function () {
+                        $scope.login({
+                            username: userData.email,
+                            password: userData.password
+                        });
+                    }, function (error) {
+                        notify.error(error.error_description);
+                    });
             };
 
             $scope.isLoggedIn = authentication.isLogged;

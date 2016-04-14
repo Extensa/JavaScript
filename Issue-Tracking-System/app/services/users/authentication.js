@@ -26,6 +26,8 @@ angular.module('issueTrackingSystem.users.authentication', [])
                     data: userData
                 }).then(function (response) {
                     deffered.resolve(response.data);
+                }, function (error) {
+                    deffered.reject(error.data);
                 });
 
                 return deffered.promise;

@@ -19,3 +19,8 @@ body {
 .glyphicon-home, .glyphicon-user {
     font-size: 1.5em;
 }
+
+.glyphicon-off {
+    font-size: 1em;
+    margin-right: 5px;
+}
