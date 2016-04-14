@@ -42,7 +42,7 @@ angular.module('issueTrackingSystem.authenticationCtrl',
                             password: userData.password
                         });
                     }, function (error) {
-                        notify.error(error.error_description);
+                        notify.error('The password and confirmation password do not match.');
                     });
             };
 
