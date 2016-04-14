@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="issueTrackingSystem" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="issueTrackingSystem" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="issueTrackingSystem" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="issueTrackingSystem" class="no-js"> <!--<![endif]-->
+<html ng-app="issueTrackingSystem" ng-controller="AuthenticationController">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,23 +10,9 @@
 </head>
 <body>
 
-<div class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand">Issue Tracking System</a>
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="navbar-collapse collapse" id="navbar-main">
-
-        </div>
-    </div>
-</div>
-
-
+<header>
+    <div ng-include="'app/views/navbar.html'"></div>
+</header>
 <div class="container">
     <div ng-view></div>
 </div>
@@ -42,7 +25,10 @@
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
 <script src="app/services/users/authentication.js"></script>
-<script src="app/controllers/homeController.js"></script>
+
+<script src="app/controllers/AuthenticationController.js"></script>
+<script src="app/controllers/DashboardController.js"></script>
+
 <script src="app/app.js"></script>
 </body>
 </html>
