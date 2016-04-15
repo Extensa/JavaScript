@@ -17,6 +17,24 @@ angular.module('issueTrackingSystem.users.authentication', [])
                 };
             }
 
+            function changePass(userData) {
+                console.log(userData);
+                var deffered = $q.defer();
+
+                $http({
+                    url: BASE_URL + 'Account/ChangePassword',
+                    method: 'POST',
+                    data: userData,
+                    headers: this.getAuthHeader()
+                }).then(function () {
+                    deffered.resolve();
+                }, function (error) {
+                    deffered.reject(error);
+                });
+
+                return deffered.promise;
+            }
+
             function register(userData) {
                 var deffered = $q.defer();
 
@@ -24,8 +42,8 @@ angular.module('issueTrackingSystem.users.authentication', [])
                     url: BASE_URL + 'Account/Register',
                     method: 'POST',
                     data: userData
-                }).then(function (response) {
-                    deffered.resolve(response.data);
+                }).then(function () {
+                    deffered.resolve();
                 }, function (error) {
                     deffered.reject(error.data);
                 });
@@ -73,6 +91,7 @@ angular.module('issueTrackingSystem.users.authentication', [])
             }
 
             return {
+                changePass: changePass,
                 register: register,
                 login: login,
                 logout: logout,

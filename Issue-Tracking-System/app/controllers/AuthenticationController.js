@@ -9,6 +9,10 @@ angular.module('issueTrackingSystem.authenticationCtrl',
             templateUrl: 'app/views/home/register.html',
             controller: 'AuthenticationController'
         });
+        $routeProvider.when('/profile/password', {
+            templateUrl: 'app/views/home/changePassword.html',
+            controller: 'AuthenticationController'
+        });
     }])
     .controller('AuthenticationController', ['$scope', '$location','authentication', 'notify',
         function AuthenticationController($scope, $location, authentication, notify) {
@@ -44,6 +48,16 @@ angular.module('issueTrackingSystem.authenticationCtrl',
                     }, function (error) {
                         notify.error('The password and confirmation password do not match.');
                     });
+            };
+
+            $scope.changePass = function (userData) {
+                authentication.changePass(userData)
+                    .then(function () {
+                        notify.success('Password changed successfully!');
+                        $location.path('/');
+                    }, function (error) {
+                        notify.error('Failed to change the password!');
+                    })
             };
 
             $scope.isLoggedIn = authentication.isLogged;

@@ -3,7 +3,7 @@ angular.module('issueTrackingSystem.notify', [])
         var options = {
             layout: 'bottomRight',
             theme: 'relax',
-            timeout: 1700
+            timeout: 1900
         };
 
         function success(message) {
