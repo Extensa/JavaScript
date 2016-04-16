@@ -1,5 +1,5 @@
 angular.module('issueTrackingSystem.notify', [])
-    .factory('notify', [function () {
+    .factory('notifySrv', [function () {
         var options = {
             layout: 'bottomRight',
             theme: 'relax',

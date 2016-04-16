@@ -1,0 +1,5 @@
+<h1>Admin</h1>
+<button ng-click="getAllUsers(); users = !users;">Show all users</button>
+<div>
+    <div class="col-md-3" ng-repeat="user in allUsers">{{user.Username}}</div>
+</div>

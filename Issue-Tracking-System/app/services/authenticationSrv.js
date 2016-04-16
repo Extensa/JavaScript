@@ -1,5 +1,5 @@
 angular.module('issueTrackingSystem.authentication', [])
-    .factory('authentication', ['$http', '$q', '$cookies', 'BASE_URL',
+    .factory('authenticationSrv', ['$http', '$q', '$cookies', 'BASE_URL',
         function ($http, $q, $cookies, BASE_URL) {
             
             function getAuthHeader() {
@@ -11,7 +11,6 @@ angular.module('issueTrackingSystem.authentication', [])
             }
             
             function changePass(userData) {
-                console.log(userData);
                 var deffered = $q.defer();
 
                 $http({
@@ -61,8 +60,11 @@ angular.module('issueTrackingSystem.authentication', [])
                         headers: { Authorization: 'Bearer ' + userCredentials.data.access_token }
                     }).then(function (response) {
                         userCredentials.data.isAdmin = response.data.isAdmin;
+                        userCredentials.data.id = response.data.Id;
 
                         $cookies.putObject('identity', userCredentials.data, { expires: userCredentials.data['.expires'] });
+
+                        console.log($cookies.getObject('identity'));
                     });
 
                 }, function (error) {
@@ -95,12 +97,19 @@ angular.module('issueTrackingSystem.authentication', [])
                 return cookie != undefined;
             }
 
+            function isAdmin() {
+                var cookie = $cookies.getObject('identity');
+
+                return cookie.isAdmin;
+            }
+
             return {
                 changePass: changePass,
                 register: register,
                 login: login,
                 logout: logout,
                 isLogged: isLogged,
+                isAdmin: isAdmin,
                 getAuthHeader: getAuthHeader
             }
     }]);

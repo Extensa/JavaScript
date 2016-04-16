@@ -5,7 +5,7 @@ angular.module('issueTrackingSystem', [
         'ngCookies',
         'issueTrackingSystem.notify',
         'issueTrackingSystem.authenticationCtrl',
-        'issueTrackingSystem.issuesCtrl'
+        'issueTrackingSystem.adminCtrl'
     ])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.otherwise({
