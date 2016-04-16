@@ -19,6 +19,10 @@ body {
     margin-top: 10px;
 }
 
+.inner-buffer {
+    padding: 10px;
+}
+
 .glyphicon-home, .glyphicon-user {
     font-size: 1.5em;
 }

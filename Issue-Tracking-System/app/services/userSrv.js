@@ -18,7 +18,26 @@ angular.module('issueTrackingSystem.user', ['issueTrackingSystem.authentication'
                 return deffered.promise;
             }
 
+            function makeAdmin(userId) {
+                var data = { userId: userId },
+                    deffered = $q.defer();
+
+                $http({
+                    url: BASE_URL + 'Users/makeadmin',
+                    method: 'PUT',
+                    data: data,
+                    headers: authenticationSrv.getAuthHeader()
+                }).then(function () {
+                    deffered.resolve();
+                }, function (error) {
+                    deffered.reject(error.data);
+                });
+
+                return deffered.promise;
+            }
+
             return {
-                getAllUsers: getAllUsers
+                getAllUsers: getAllUsers,
+                makeAdmin: makeAdmin
             }
     }]);

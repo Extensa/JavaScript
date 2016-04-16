@@ -1,0 +1,5 @@
+<div>
+    <span>{{user.Username}}</span>
+    <button ng-if="!user.isAdmin" ng-click="makeAdmin(user.Id)" class="btn btn-info btn-xs">Make Admin</button>
+    <label  ng-if="user.isAdmin" class="label label-warning">Admin</label>
+</div>

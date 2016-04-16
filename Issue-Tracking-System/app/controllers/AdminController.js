@@ -16,5 +16,14 @@ angular.module('issueTrackingSystem.adminCtrl', ['issueTrackingSystem.user'])
                     }, function (error) {
                         notifySrv.error(error.data);
                     });
-            }
+            };
+            
+            $scope.makeAdmin = function (id) {
+                userSrv.makeAdmin(id)
+                    .then(function () {
+                        notifySrv.success('The user is now an admin!');
+                    }, function (error) {
+                        notifySrv.error(error);
+                    });
+            };
         }]);

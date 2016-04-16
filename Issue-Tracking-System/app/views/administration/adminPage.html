@@ -5,5 +5,8 @@
     <div class="col-md-5 center top-buffer">
         <input class="form-control" type="text" placeholder="Search" ng-model="searchUser">
     </div>
-    <div class="col-md-3" ng-repeat="user in allUsers | filter:searchUser">{{user.Username}}</div>
+    <div class="col-md-3 inner-buffer"
+         ng-repeat="user in allUsers | filter:searchUser"
+         ng-include="'app/views/userCell.html'">
+    </div>
 </div>
