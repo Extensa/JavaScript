@@ -6,8 +6,9 @@ angular.module('issueTrackingSystem.adminCtrl', ['issueTrackingSystem.user'])
         });
     }])
     .controller('AdminController', ['$scope', 'userSrv', 'notifySrv',
-        
         function AdminController($scope, userSrv, notifySrv) {
+            $scope.showUsers = false;
+
             $scope.getAllUsers = function () {
                 userSrv.getAllUsers()
                     .then(function (users) {

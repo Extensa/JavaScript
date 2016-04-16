@@ -1,5 +1,9 @@
-<h1>Admin</h1>
-<button ng-click="getAllUsers(); users = !users;">Show all users</button>
-<div>
-    <div class="col-md-3" ng-repeat="user in allUsers">{{user.Username}}</div>
+<div class="text-center row">
+    <button ng-click="getAllUsers(); showUsers = !showUsers;" class="btn btn-info">All Users</button>
+</div>
+<div ng-if="showUsers" class="row">
+    <div class="col-md-5 center top-buffer">
+        <input class="form-control" type="text" placeholder="Search" ng-model="searchUser">
+    </div>
+    <div class="col-md-3" ng-repeat="user in allUsers | filter:searchUser">{{user.Username}}</div>
 </div>
