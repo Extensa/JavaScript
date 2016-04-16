@@ -1,5 +1,5 @@
 angular.module('issueTrackingSystem.authenticationCtrl', 
-    ['issueTrackingSystem.users.authentication'])
+    ['issueTrackingSystem.authentication'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/login', {
             templateUrl: 'app/views/home/login.html',
@@ -17,10 +17,9 @@ angular.module('issueTrackingSystem.authenticationCtrl',
     .controller('AuthenticationController', ['$scope', '$location','authentication', 'notify',
         function AuthenticationController($scope, $location, authentication, notify) {
             $scope.login = function (userData) {
-                console.log(userData);
+
                 authentication.login(userData)
                     .then(function (success) {
-                        authentication.setUserCredentials(success);
                         $location.path('/');
                         notify.success('Welcome aboard!!');
                     }, function (error) {
@@ -31,7 +30,6 @@ angular.module('issueTrackingSystem.authenticationCtrl',
             $scope.logout = function () {
                 authentication.logout()
                     .then(function () {
-                        authentication.clearUserCredentials();
                         notify.success('You logged out successfully!');
                     }, function (error) {
                         notify.error(error.error_description);

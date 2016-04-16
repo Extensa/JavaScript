@@ -1,28 +1,21 @@
-angular.module('issueTrackingSystem.users.authentication', [])
+angular.module('issueTrackingSystem.authentication', [])
     .factory('authentication', ['$http', '$q', '$cookies', 'BASE_URL',
         function ($http, $q, $cookies, BASE_URL) {
-
-            function setUserCredentials(userCredentials) {
-                $cookies.put('identity', userCredentials.access_token, { expires: userCredentials['.expires'] });
-            }
-
-            function clearUserCredentials() {
-                $cookies.remove('identity');
-            }
-
+            
             function getAuthHeader() {
-                var accessToken = $cookies.get('identity');
+                var accessToken = $cookies.getObject('identity').access_token;
+
                 return {
                     Authorization: 'Bearer ' + accessToken
                 };
             }
-
+            
             function changePass(userData) {
                 console.log(userData);
                 var deffered = $q.defer();
 
                 $http({
-                    url: BASE_URL + 'Account/ChangePassword',
+                    url: BASE_URL + 'api/Account/ChangePassword',
                     method: 'POST',
                     data: userData,
                     headers: this.getAuthHeader()
@@ -39,7 +32,7 @@ angular.module('issueTrackingSystem.users.authentication', [])
                 var deffered = $q.defer();
 
                 $http({
-                    url: BASE_URL + 'Account/Register',
+                    url: BASE_URL + 'api/Account/Register',
                     method: 'POST',
                     data: userData
                 }).then(function () {
@@ -55,12 +48,23 @@ angular.module('issueTrackingSystem.users.authentication', [])
                 var deffered = $q.defer();
 
                 $http({
-                    url: BASE_URL + 'Token',
+                    url: BASE_URL + 'api/Token',
                     method: 'POST',
                     data: "userName=" + userData.username + "&password=" + userData.password +
                     "&grant_type=password"
-                }).then(function (response) {
-                    deffered.resolve(response.data);
+                }).then(function (userCredentials) {
+                    deffered.resolve();
+
+                    $http({
+                        url: BASE_URL + 'users/me',
+                        method: 'GET',
+                        headers: { Authorization: 'Bearer ' + userCredentials.data.access_token }
+                    }).then(function (response) {
+                        userCredentials.data.isAdmin = response.data.isAdmin;
+
+                        $cookies.putObject('identity', userCredentials.data, { expires: userCredentials.data['.expires'] });
+                    });
+
                 }, function (error) {
                     deffered.reject(error.data);
                 });
@@ -72,11 +76,12 @@ angular.module('issueTrackingSystem.users.authentication', [])
                 var deffered = $q.defer();
 
                 $http({
-                    url: BASE_URL + 'Account/Logout',
+                    url: BASE_URL + 'api/Account/Logout',
                     method: 'POST',
                     headers: this.getAuthHeader()
-                }).then(function (response) {
-                    deffered.resolve(response.data);
+                }).then(function () {
+                    deffered.resolve();
+                    $cookies.remove('identity');
                 }, function (error) {
                     deffered.reject(error.data);
                 });
@@ -96,8 +101,6 @@ angular.module('issueTrackingSystem.users.authentication', [])
                 login: login,
                 logout: logout,
                 isLogged: isLogged,
-                setUserCredentials: setUserCredentials,
-                clearUserCredentials: clearUserCredentials,
                 getAuthHeader: getAuthHeader
             }
     }]);
