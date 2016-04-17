@@ -3,6 +3,7 @@ angular.module('issueTrackingSystem.adminCtrl', ['issueTrackingSystem.user'])
         $routeProvider.when('/admin', {
             templateUrl: 'app/views/administration/adminPage.html',
             controller: 'AdminController',
+            requiresLogin: true,
             requiresAdmin: true
         });
     }])
