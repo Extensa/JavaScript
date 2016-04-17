@@ -100,7 +100,7 @@ angular.module('issueTrackingSystem.authentication', [])
             function isAdmin() {
                 var cookie = $cookies.getObject('identity');
 
-                return cookie.isAdmin;
+                return cookie != undefined && cookie.isAdmin;
             }
 
             return {

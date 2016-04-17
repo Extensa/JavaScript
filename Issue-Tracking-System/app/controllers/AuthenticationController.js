@@ -10,7 +10,8 @@ angular.module('issueTrackingSystem.authenticationCtrl', ['issueTrackingSystem.a
         });
         $routeProvider.when('/profile/password', {
             templateUrl: 'app/views/home/changePassword.html',
-            controller: 'AuthenticationController'
+            controller: 'AuthenticationController',
+            requiresLogin: true
         });
     }])
     .controller('AuthenticationController', ['$scope', '$location','authenticationSrv', 'notifySrv',

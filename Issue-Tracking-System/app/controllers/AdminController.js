@@ -2,7 +2,8 @@ angular.module('issueTrackingSystem.adminCtrl', ['issueTrackingSystem.user'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/admin', {
             templateUrl: 'app/views/administration/adminPage.html',
-            controller: 'AdminController'
+            controller: 'AdminController',
+            requiresAdmin: true
         });
     }])
     .controller('AdminController', ['$scope', 'userSrv', 'notifySrv',
