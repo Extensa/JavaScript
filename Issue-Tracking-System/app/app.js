@@ -19,6 +19,10 @@ angular.module('issueTrackingSystem', [
                 $location.path('/login');
             }
 
+            if (!next.requiresLogin && authenticationSrv.isLogged()) {
+                $location.path('/');
+            }
+
             if (next.requiresAdmin && !authenticationSrv.isAdmin()) {
                 $location.path('/');
             }

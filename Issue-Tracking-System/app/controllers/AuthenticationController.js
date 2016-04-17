@@ -2,11 +2,13 @@ angular.module('issueTrackingSystem.authenticationCtrl', ['issueTrackingSystem.a
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/login', {
             templateUrl: 'app/views/home/login.html',
-            controller: 'AuthenticationController'
+            controller: 'AuthenticationController',
+            requiresLogin: false
         });
         $routeProvider.when('/register', {
             templateUrl: 'app/views/home/register.html',
-            controller: 'AuthenticationController'
+            controller: 'AuthenticationController',
+            requiresLogin: false
         });
         $routeProvider.when('/profile/password', {
             templateUrl: 'app/views/home/changePassword.html',
