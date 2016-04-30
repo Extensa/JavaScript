@@ -28,7 +28,8 @@ angular.module('issueTrackingSystem.projectsCtrl', ['issueTrackingSystem.project
                 
                 projectSrv.addProject(projectData)
                     .then(function (success) {
-                        notifySrv.success('Successfully created a project!');
+                        console.log(success);
+                        notifySrv.success(success.Name + 'successfully created a project!');
                         $scope.newProject = {};
                     }, function (error) {
                         console.log(error);

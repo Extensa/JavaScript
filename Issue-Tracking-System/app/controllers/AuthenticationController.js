@@ -1,17 +1,17 @@
 angular.module('issueTrackingSystem.authenticationCtrl', ['issueTrackingSystem.authentication'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/login', {
-            templateUrl: 'app/views/home/login.html',
+            templateUrl: 'app/views/user/login.html',
             controller: 'AuthenticationController',
             requiresLogin: false
         });
         $routeProvider.when('/register', {
-            templateUrl: 'app/views/home/register.html',
+            templateUrl: 'app/views/user/register.html',
             controller: 'AuthenticationController',
             requiresLogin: false
         });
         $routeProvider.when('/profile/password', {
-            templateUrl: 'app/views/home/changePassword.html',
+            templateUrl: 'app/views/user/changePassword.html',
             controller: 'AuthenticationController',
             requiresLogin: true
         });
@@ -22,8 +22,8 @@ angular.module('issueTrackingSystem.authenticationCtrl', ['issueTrackingSystem.a
 
                 authenticationSrv.login(userData)
                     .then(function (success) {
-                        $location.path('/');
                         notifySrv.success('Welcome aboard!!');
+                        $location.path('/');
                     }, function (error) {
                         notifySrv.error(error.error_description);
                     });

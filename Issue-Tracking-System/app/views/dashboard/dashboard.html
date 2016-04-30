@@ -1,3 +1,35 @@
 <div ng-if="isLoggedIn()">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, esse!
+    <div class="row">
+        <div class="col-lg-9 text-center">
+            <table class="table">
+                <thead>
+                <tr>
+                    <td>Title</td>
+                    <td>Description</td>
+                    <td>Project</td>
+                    <td>Due Date</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="issue in issues">
+                    <td>{{ issue.Title }}</td>
+                    <td>{{ issue.Description }}</td>
+                    <td>{{ issue.Project.Name }}</td>
+                    <td>{{ issue.DueDate | date:"dd.MM.yyyy HH:mm" }}</td>
+                </tr>
+                </tbody>
+            </table>
+            <pagination ng-model="issuesParams.currentPage"
+                        total-items="issuesCount"
+                        items-per-page="issuesParams.pageSize"
+                        ng-change="getUserIssues()"
+                        max-size="9"
+                        boundary-links="true">
+            </pagination>
+        </div>
+        <div class="col-lg-3">
+            *All the projects associated to the user*
+        </div>
+    </div>
+
 </div>

@@ -1,33 +1,17 @@
-body {
-    padding-top: 60px;
-    background-color: #d9ffb3;
-}
+body { padding-top: 60px; }
 
-.border {
-    padding: 20px;
-    border: 1px solid #bfbfbf;
-    box-shadow: 1px 1px 5px #a6a6a6;
-    background-color: white;
-}
+.border { padding: 20px; border: 1px solid #bfbfbf; box-shadow: 1px 1px 5px #a6a6a6; background-color: white; }
 
-.center{
-    margin: 0 auto;
-    float: none;
-}
+.center{ margin: 0 auto; float: none; }
 
-.top-buffer {
-    margin-top: 10px;
-}
+.top-buffer { margin-top: 10px; }
 
-.inner-buffer {
-    padding: 10px;
-}
+.inner-buffer { padding: 10px; }
 
-.glyphicon-home, .glyphicon-user {
-    font-size: 1.5em;
-}
+.glyphicon-home, .glyphicon-user { font-size: 1.5em; }
 
-.glyphicon-off {
-    font-size: 1em;
-    margin-right: 5px;
-}
+.glyphicon-off { font-size: 1em; margin-right: 5px; }
+
+.pagination { margin: 0; }
+
+thead tr > td { font-weight: bold; font-size: 15px; }
