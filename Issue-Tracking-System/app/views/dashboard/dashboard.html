@@ -1,4 +1,4 @@
-<div ng-if="isLoggedIn()">
+<div ng-if="isLoggedIn()" ng-controller="IssuesController">
     <div class="row">
         <div class="col-lg-9 text-center">
             <table class="table">
@@ -12,7 +12,7 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="issue in issues">
-                    <td>{{ issue.Title }}</td>
+                    <td><a href="#/issues/{{ issue.Id }}">{{ issue.Title }}</a></td>
                     <td>{{ issue.Description }}</td>
                     <td>{{ issue.Project.Name }}</td>
                     <td>{{ issue.DueDate | date:"dd.MM.yyyy HH:mm" }}</td>
@@ -22,7 +22,7 @@
             <pagination ng-model="issuesParams.currentPage"
                         total-items="issuesCount"
                         items-per-page="issuesParams.pageSize"
-                        ng-change="getUserIssues()"
+                        ng-click="getUserIssues()"
                         max-size="9"
                         boundary-links="true">
             </pagination>

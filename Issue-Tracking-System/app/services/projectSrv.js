@@ -19,6 +19,10 @@ angular.module('issueTrackingSystem.project', ['issueTrackingSystem.authenticati
                 return deffered.promise;
             }
 
+            function getUserProjects(userId) {
+                
+            }
+
             return {
                 addProject: addProject
             }

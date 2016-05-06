@@ -1,0 +1,52 @@
+<div class="issueDetails row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Issue Details</div>
+            <div class="panel-body">
+                <div class="row"><span>Title:</span>
+                    <p>{{ issueDetails.Title }}</p>
+                </div>
+                <div class="row"><span>Description:</span>
+                    <p>{{ issueDetails.Description }}</p>
+                </div>
+                <div class="row"><span>Assignee:</span>
+                    <p>{{ issueDetails.Assignee.Username }}</p>
+                </div>
+                <div class="row"><span>Priority:</span>
+                    <p>{{ issueDetails.Priority.Name }}</p>
+                </div>
+                <div class="row"><span>Due Date:</span>
+                    <p>{{ issueDetails.DueDate | date:"dd.MM.yyyy HH:mm" }}</p>
+                </div>
+                <div class="row"><span>Author:</span>
+                    <p>{{ issueDetails.Author.Username }}</p>
+                </div>
+                <div class="row"><span>Project:</span>
+                    <p>{{ issueDetails.Project.Name }}</p>
+                </div>
+                <div class="row"><span>Status:</span>
+                    <p>{{ issueDetails.Status.Name }}</p>
+                </div>
+                <div class="row"><span>Labels:</span>
+                    <p class="label label-info" ng-repeat="label in issueDetails.Labels">{{ label.Name }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <span>Available Statuses:</span>
+        </div>
+        <div class="row" ng-repeat="status in issueDetails.AvailableStatuses">
+            <div class="col-md-3 col-sm-3">
+                <p>{{ status.Name }}</p>
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <button class="btn btn-success btn-xs"
+                        ng-if="issueDetails.Assignee.Id === userId"
+                        ng-click="changeIssueStatus(status.Id, status.Name)"
+                >Change</button>
+            </div>
+        </div>
+    </div>
+</div>

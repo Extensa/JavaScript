@@ -15,3 +15,9 @@ body { padding-top: 60px; }
 .pagination { margin: 0; }
 
 thead tr > td { font-weight: bold; font-size: 15px; }
+
+tbody tr > td { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 0; }
+
+.issueDetails p { display: inline; margin-left: 5px; }
+.issueDetails span { font-weight: bold; }
+.issueDetails .row { margin: 0 0 10px 0;}

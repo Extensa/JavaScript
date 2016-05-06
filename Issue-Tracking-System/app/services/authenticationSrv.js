@@ -63,8 +63,6 @@ angular.module('issueTrackingSystem.authentication', [])
                         userCredentials.data.id = response.data.Id;
 
                         $cookies.putObject('identity', userCredentials.data, { expires: userCredentials.data['.expires'] });
-
-                        console.log($cookies.getObject('identity'));
                     });
 
                 }, function (error) {
@@ -92,7 +90,7 @@ angular.module('issueTrackingSystem.authentication', [])
             }
 
             function isLogged() {
-                var cookie = $cookies.get('identity');
+                var cookie = $cookies.getObject('identity');
 
                 return cookie != undefined;
             }
@@ -103,6 +101,12 @@ angular.module('issueTrackingSystem.authentication', [])
                 return cookie != undefined && cookie.isAdmin;
             }
 
+            function getUserId() {
+                var id = $cookies.getObject('identity').id;
+
+                return id;
+            }
+
             return {
                 changePass: changePass,
                 register: register,
@@ -110,6 +114,7 @@ angular.module('issueTrackingSystem.authentication', [])
                 logout: logout,
                 isLogged: isLogged,
                 isAdmin: isAdmin,
-                getAuthHeader: getAuthHeader
+                getAuthHeader: getAuthHeader,
+                getUserId: getUserId
             }
     }]);
