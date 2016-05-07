@@ -1,6 +1,11 @@
 angular.module('issueTrackingSystem.issues', ['issueTrackingSystem.authentication'])
     .factory('issuesSrv', ['$http', '$q', 'authenticationSrv', 'BASE_URL',
         function ($http, $q, authenticationSrv, BASE_URL) {
+            var lastLoadedIssue = lastLoadedIssue || {};
+
+            function getLastLoadedIssue() {
+                return lastLoadedIssue;
+            }
 
             function getUserIssues(data) {
                 var deffered = $q.defer();
@@ -27,6 +32,7 @@ angular.module('issueTrackingSystem.issues', ['issueTrackingSystem.authenticatio
                     headers: authenticationSrv.getAuthHeader()
                 }).then(function (response) {
                     deffered.resolve(response.data);
+                    lastLoadedIssue = response.data;
                 }, function (error) {
                     deffered.reject(error.data);
                 });
@@ -50,9 +56,29 @@ angular.module('issueTrackingSystem.issues', ['issueTrackingSystem.authenticatio
                 return deffered.promise;
             }
 
+            function editIssue(issue) {
+                var deffered = $q.defer();
+
+                $http({
+                    url: BASE_URL + 'Issues/' + issue.Id,
+                    method: 'PUT',
+                    data: issue,
+                    headers: authenticationSrv.getAuthHeader()
+                }).then(function (response) {
+                    deffered.resolve(response.data);
+                    console.log(response.data);
+                }, function (error) {
+                    deffered.reject(error.data);
+                });
+
+                return deffered.promise;
+            }
+
             return {
                 getUserIssues: getUserIssues,
                 getIssue: getIssue,
-                changeIssueStatus: changeIssueStatus
+                changeIssueStatus: changeIssueStatus,
+                getLastLoadedIssue: getLastLoadedIssue,
+                editIssue: editIssue
             }
         }]);

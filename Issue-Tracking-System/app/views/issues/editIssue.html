@@ -1,0 +1,51 @@
+<div class="issueEdit">
+    <div class="col-xs-7 col-sm-6 col-md-4">
+        <form name="editIssueForm">
+            <div class="form-group">
+                <label>Title</label>
+                <input name="title" type="text" class="form-control input-sm"
+                   ng-model="issue.Title" required>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea name="description" type="text" class="form-control input-sm"
+                       ng-model="issue.Description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Assignee</label>
+                <select class="form-control"
+                        ng-model="issue.Assignee.Id"
+                        ng-options="user.Id as user.Username for user in users"
+                        required>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Priority</label>
+                <select class="form-control"
+                        ng-model="issue.Priority.Id"
+                        ng-options="priority.Id as priority.Name for priority in project.Priorities"
+                        required>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>DueDate</label>
+                <input name="description" type="text" class="form-control input-sm"
+                          ng-model="issue.DueDate" required>
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-success btn-sm" ng-click="editIssue()">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-xs-7 col-sm-6 col-md-4">
+        <div class="row"><span>Author:</span>
+            <p>{{ issue.Author.Username }}</p>
+        </div>
+        <div class="row"><span>Project:</span>
+            <p>{{ issue.Project.Name }}</p>
+        </div>
+        <div class="row"><span>Project:</span>
+            <p>{{ issue.Status.Name }}</p>
+        </div>
+    </div>
+</div>

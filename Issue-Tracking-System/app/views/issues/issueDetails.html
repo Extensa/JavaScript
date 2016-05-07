@@ -1,7 +1,10 @@
-<div class="issueDetails row">
+<div class="issueDetails center row">
     <div class="col-md-6">
         <div class="panel panel-primary">
-            <div class="panel-heading">Issue Details</div>
+            <div class="panel-heading clearfix">
+                <span class="pull-left">Issue Details</span>
+                <a href="#/issues/{{ issueDetails.Id }}/edit" ng-if="canEdit" class="btn btn-warning btn-sm pull-right">EDIT</a>
+            </div>
             <div class="panel-body">
                 <div class="row"><span>Title:</span>
                     <p>{{ issueDetails.Title }}</p>

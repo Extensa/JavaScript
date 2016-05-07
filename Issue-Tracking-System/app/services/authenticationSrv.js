@@ -61,8 +61,9 @@ angular.module('issueTrackingSystem.authentication', [])
                     }).then(function (response) {
                         userCredentials.data.isAdmin = response.data.isAdmin;
                         userCredentials.data.id = response.data.Id;
-
                         $cookies.putObject('identity', userCredentials.data, { expires: userCredentials.data['.expires'] });
+
+                        console.log(getAuthHeader());
                     });
 
                 }, function (error) {
