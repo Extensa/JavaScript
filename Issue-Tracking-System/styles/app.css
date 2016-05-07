@@ -20,9 +20,9 @@ thead tr > td { font-weight: bold; font-size: 15px; }
 
 tbody tr > td { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 0; }
 
-.issueDetails p, .issueEdit p { display: inline; margin-left: 5px; }
-.issueDetails span, .issueEdit span { font-weight: bold; }
+.issueDetails p, .issueEdit p, .projectDetails p { display: inline; margin-left: 5px; }
+.issueDetails span, .issueEdit span, .projectDetails span { font-weight: bold; }
 
 .issueDetails .panel-heading span { margin-top: 1.2%; }
 .issueDetails .panel-heading { height: 57px; }
-.issueDetails .row, .issueEdit .row { margin: 0 0 10px 0; }
+.issueDetails .row, .issueEdit .row, .projectDetails .row { margin: 0 0 10px 0; }

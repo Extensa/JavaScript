@@ -6,6 +6,11 @@ angular.module('issueTrackingSystem.projectsCtrl', ['issueTrackingSystem.project
             requiresLogin: true,
             requiresAdmin: true
         });
+        $routeProvider.when('/projects/:id',{
+            templateUrl: 'app/views/project/projectDetails.html',
+            controller: 'ProjectDetailsController',
+            requiresLogin: true
+        });
     }])
     .controller('ProjectsController', ['$scope', '$location', 'projectSrv', 'userSrv', 'notifySrv',
         function ProjectsController($scope, $location, projectSrv, userSrv, notifySrv) {
@@ -35,4 +40,12 @@ angular.module('issueTrackingSystem.projectsCtrl', ['issueTrackingSystem.project
                         console.log(error);
                     })
             }
+    }])
+    .controller('ProjectDetailsController', ['$scope', '$routeParams','projectSrv', 'userSrv',
+        function ProjectDetailsController($scope, $routeParams, projectSrv, userSrv) {
+            projectSrv.getProject($routeParams.id)
+                .then(function (success) {
+                    $scope.project = success;
+                    console.log(success);
+                });
     }]);

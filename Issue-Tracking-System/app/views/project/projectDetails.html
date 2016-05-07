@@ -1,0 +1,29 @@
+<div class="projectDetails center row">
+    <div class="col-md-7">
+        <div class="panel panel-primary">
+            <div class="panel-heading clearfix">
+                <span class="pull-left">Project Details</span>
+            </div>
+            <div class="panel-body">
+                <div class="row"><span>Name:</span>
+                    <p>{{ project.Name }}</p>
+                </div>
+                <div class="row"><span>Description:</span>
+                    <p>{{ project.Description }}</p>
+                </div>
+                <div class="row"><span>Project Key:</span>
+                    <p>{{ project.ProjectKey }}</p>
+                </div>
+                <div class="row"><span>Lead:</span>
+                    <p>{{ project.Lead.Username}}</p>
+                </div>
+                <div class="row"><span>Priorities:</span>
+                    <p class="label label-success" ng-repeat="priority in project.Priorities">{{ priority.Name }}</p>
+                </div>
+                <div class="row"><span>Labels:</span>
+                    <p class="label label-info" ng-repeat="label in project.Labels">{{ label.Name }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
